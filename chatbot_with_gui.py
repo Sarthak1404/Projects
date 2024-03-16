@@ -69,42 +69,66 @@ def get_response(message):
   # If the intent is unknown, say that the chatbot does not understand
   else:
     return "Sorry, I don't understand what you mean."
+# Define a new light blue and purple color scheme
+background_color = "#A01FE7"     # Veronica
+text_area_color = "#C0DCF7"      # Columbia Blue
+button_color = "#C0DCF7"         # Columbia Blue
+text_color = "#301934"           # Dark Purple
 
-# Create a root window
+# Create a root window with a title and set the background color
 root = tk.Tk()
 root.title("Chatbot Buddy")
+root.configure(bg=background_color)
 
-# Create a text area for displaying the conversation
-conversation = tk.Text(root, width=80, height=20)
-conversation.pack()
+# Create a frame for the conversation area and scrollbar
+conversation_frame = tk.Frame(root, bg=background_color)
+conversation_frame.pack(pady=(10, 0))
 
-# Create an input field for the user to enter their message
-user_input = tk.Entry(root, width=75)
-user_input.pack()
+# Create a text area for displaying the conversation with the color scheme
+conversation = tk.Text(conversation_frame, width=75, height=20, bg=text_area_color, fg=text_color)
+conversation.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
+
+# Create a scrollbar and attach it to the conversation text area
+scrollbar = tk.Scrollbar(conversation_frame, command=conversation.yview)
+scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
+
+# Configure the conversation text area to use the scrollbar
+conversation.config(yscrollcommand=scrollbar.set)
+
+# Create a frame for the input area and button
+input_frame = tk.Frame(root, bg=background_color)
+input_frame.pack(pady=(10, 10))
+
+# Create an input field for the user to enter their message with the color scheme
+user_input = tk.Entry(input_frame, width=58, bg=button_color, fg=text_color)
+user_input.pack(side=tk.LEFT, padx=(0, 10))
 
 # Define a function to handle the user's message
-def send_message():
+def send_message(event=None):
     # Get the user's message from the input field
     message = user_input.get()
     # Clear the input field
     user_input.delete(0, tk.END)
-    # Insert the user's message into the conversation  
-    conversation.insert(tk.END, "You: " + str(message) + "\n")
+    # Insert the user's message into the conversation
+    conversation.insert(tk.END, "You: " + message + "\n")
     # If the user types 'quit', break the loop
-    if message == "quit":
-      conversation.insert(tk.END, "Bye!!\n")
-      root.after(2000, root.destroy) # wait 2 seconds and then destroy the root
+    if message.lower() == "quit":
+        conversation.insert(tk.END, "Bye!!\n")
+        root.after(1500, root.destroy)
     else:
-      # Otherwise, get a response and print it
-      response = get_response(message)
-      # Insert the chatbot's response into the conversation
-      conversation.insert(tk.END, "Buddy: " + str(response) + "\n")
+        # Placeholder for the get_response function
+        response = get_response(message)
+        # Insert the chatbot's response into the conversation
+        conversation.insert(tk.END, "Buddy: " + response + "\n")
 
-# Create a button for sending the message
-send_button = tk.Button(root, text="Send", command=send_message)
-send_button.pack()
+# Create a button for sending the message with the color scheme
+send_button = tk.Button(input_frame, text="Send", command=send_message, bg=button_color, fg=text_color)
+send_button.pack(side=tk.RIGHT)
 
-# Start the chatbot conversation
+# Bind the Enter key to the send_message function
+root.bind('<Return>', send_message)
+
+# Start the chatbot conversation with a welcome message
 conversation.insert(tk.END, "Welcome to the chatbot. Type 'quit' to exit.\n")
 
 # Start the main loop
