@@ -18,7 +18,7 @@ The Tic Tac Toe game allows you to play against an AI opponent that uses the Min
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/your-username/projects.git
+   git clone https://github.com/Sarthak1404/projects.git
    cd projects
    ```
 
@@ -51,7 +51,7 @@ The Chatbot is a simple untrained chatbot that responds to user input based on p
 
 1. Clone this repository (if you haven't already):
    ```bash
-   git clone https://github.com/your-username/projects.git
+   git clone https://github.com/Sarthak1404/projects.git
    cd projects
    ```
 
