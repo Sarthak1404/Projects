@@ -1,7 +1,3 @@
-Certainly! Below, I've created a README.md file for your Python projects: Tic Tac Toe (with Minimax algorithm) and a Chatbot with a GUI. Feel free to customize it further to match your project specifics.
-
----
-
 # Projects
 
 This repository contains two Python projects: a Tic Tac Toe game with an AI opponent using the Minimax algorithm and a Chatbot with a graphical user interface (GUI).
